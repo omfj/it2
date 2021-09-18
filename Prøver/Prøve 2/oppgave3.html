@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 3</title>
+    <style>
+        .main {
+            margin: 0 auto; 
+            width: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>Video</h1>
+        <video id="vid" src="snow.mp4" height="500"></video>
+
+        <br>
+        
+        <p id="parTekst">Videotid: 0 sek</p>
+
+        <p id="parTekst2"></p>
+
+
+        <button id="btnSP">Pause/Resume</button>
+
+        <br>
+        <br>
+
+        <button id="btnminus5">- 10 sek</button>
+        <button id="btnStartNytt">Start på nytt</button>
+        <button id="btnplus5">+ 10 sek</button>
+
+        <br>
+        <br>
+
+        <input type="checkbox" id="rbTid">
+        <label>10 sek til 15 sek</label>
+
+        <br>
+        <br>
+
+        <input id="inpSlutt" type="number" min="0" max="40" placeholder="40">sek
+        <button id="btnSlutt">Slutt her</button>
+    </div>
+
+    <script src="script3.js"></script>
+</body>
+</html>

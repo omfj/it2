@@ -1,0 +1,11 @@
+.inpNumber {
+    width: 50px;
+}
+.inpText {
+    width: 150px;
+}
+html, body {
+	margin: auto;
+	width: 50%;
+	background-color: rgb(200,200,200);
+}

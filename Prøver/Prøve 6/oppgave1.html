@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 2</title>
+    <style>
+        html, body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #fjern {
+            display: hidden;
+        }
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+            /* Hide the browser's default radio button */
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+            /* Create a custom radio button */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+            border-radius: 50%;
+        }
+
+            /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+            /* When the radio button is checked, add a blue background */
+            .container input:checked ~ .checkmark {
+            background-color: #3df321;
+        }
+
+            /* Create the indicator (the dot/circle - hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+            /* Show the indicator (dot/circle) when checked */
+        .container input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+            /* Style the indicator (dot/circle) */
+        .container .checkmark:after {
+            top: 9px;
+            left: 9px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+             background: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Oppgave 1</h1>
+
+    <label for="inpEcon" class="container"> Economy Class
+        <input type="radio" id="inpEcon" name="bilett" value="classEcon">
+        <span class="checkmark"></span>
+    </label>
+    
+    <label for="inpBuis" class="container">Buisness Class
+        <input type="radio" id="inpBuis" name="bilett" value="classBuis">
+        <span class="checkmark"></span>
+    </label>
+
+    <!-- <input type="radio" id="inpEcon" name="bilett" value="classEcon">
+    <label for="inpEcon">Economy Class</label><br>
+
+    <input type="radio" id="inpBuis" name="bilett" value="classBuis">
+    <label for="inpBuis">Buisness Class</label><br><br> -->
+
+    <div id="fjern">
+        <select name="kolli" id="selKolli">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+
+        <br>
+        <br>
+
+        <div id="idVekt">
+
+        </div>
+    </div>
+
+        <br>
+
+    <button id="btnReg">Registrer info</button>
+
+    <p id="pMelding"></p>
+
+    <script>
+        const selKolli = document.getElementById('selKolli');
+        const inpEcon = document.getElementById('inpEcon');
+        const inpBuis = document.getElementById('inpBuis');
+        const idVekt = document.getElementById('idVekt');
+        const fjern = document.getElementById('fjern');
+        const btnReg = document.getElementById('btnReg');
+        const pMelding = document.getElementById('pMelding');
+
+        selKolli.onchange = function() {
+            idVekt.innerHTML = '';
+            for(let i = 0; i < selKolli.value; i++) {
+                let vektInput = document.createElement('input');
+                vektInput.setAttribute('id', 'inpVekt' + (i+1));
+                vektInput.setAttribute('type', 'number');
+                // vektInput = '<input id="inpVekt' + (i+1) + '" type="number">';
+                
+                console.log(vektInput);
+                
+                idVekt.innerHTML += 'Vekt på bag ' + (i+1) + ': ';
+                idVekt.appendChild(vektInput);
+                idVekt.innerHTML += 'kg'
+                idVekt.innerHTML += '<br><br>'
+            }
+        }
+
+        btnReg.onclick = function() {
+            const antall = selKolli.value;
+            if(antall > 0) {
+                var vekt1 = Number(inpVekt1.value);
+
+                if(antall > 1) {
+                    var vekt2 = Number(inpVekt2.value);
+                } else {
+                    var vekt2 = 0;
+                }
+            } else {
+                var vekt1 = 0;
+                var vekt2 = 0;
+            }
+
+            const totalVekt = (vekt1 + vekt2);
+
+            console.log('Antall kolli: ' + antall)
+            console.log('Vekt1: ' + vekt1);
+            console.log('Vekt2: ' + vekt2);
+            console.log('Total vekt: ' + totalVekt);
+
+            if((selKolli.value) == 0 || inpBuis.checked) {
+                pMelding.innerHTML = 'God tur videre!';
+            } else if(totalVekt < 26 && antall == 1 && totalVekt < 81) {
+                pMelding.innerHTML = 'Du har ingen overvekt eller ekstra bagasje.';
+            } else if(totalVekt > 25 && antall == 1 && totalVekt < 81) {
+                pMelding.innerHTML = 'Du har 1 bagasje med ' + (totalVekt-25) + ' kg overvekt. Du må betale ' + (totalVekt-25)*50 + ' kr ekstra.';
+            } else if(vekt1 < 25 && vekt2 < 25 && antall == 2 && totalVekt < 81) {
+                pMelding.innerHTML = 'Du har 1 ekstra bagasje. Det blir 100kr ekstra.';
+            } else if(vekt1 > 25 && vekt2 < 25 && antall == 2 && totalVekt < 81) {
+                pMelding.innerHTML = 'Du har 1 ekstra bagasje og 1 bagasje med ' + (vekt1-25) + ' kg overvekt. Det blir 100 kr ekstra for ekstra bagasje og ' + (vekt1-25)*50 + ' kr for overvekten.';
+            } else if(vekt1 < 25 && vekt2 > 25 && antall == 2 && totalVekt < 81) {
+                pMelding.innerHTML = 'Du har 1 ekstra bagasje og 1 bagasje med ' + (vekt2-25) + ' kg overvekt. Det blir 100 kr ekstra for ekstra bagasje og ' + (vekt2-25)*50 + ' kr for overvekten.';
+            } else if(vekt1 > 25 && vekt2 > 25 && antall == 2 && totalVekt < 81) {
+                pMelding.innerHTML = 'Du har 1 ekstra bagasje og begge bagasjene dine er overvekt. Det blir 100 kr ekstra for bagasje og ' + (((vekt1-25)*50) + ((vekt2-25)*50)) + ' kr for overvekt.';
+            } else {
+                pMelding.innerHTML = 'Du kan ikke ha med mer enn 80 kg i bagasje. Din vekt er ' + (totalVekt-80) + ' kg for mye.';
+            }
+        }
+
+
+        inpBuis.onchange = function() {
+            if(inpBuis.checked) {
+                fjern.style.visibility = 'hidden';
+            } 
+        }
+        inpEcon.onchange = function() {
+            if(inpEcon.checked) {
+                fjern.style.visibility = 'visible';
+            }
+        }
+
+    </script>
+</body>
+</html>

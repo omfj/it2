@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<style>
+	body {background-color: lightgrey;}
+		
+	#mainDiv {
+		
+		display: flex;
+        align-items: center;
+        justify-content: center;
+		
+		
+		position:relative;
+		width:700px;
+		height:700px;
+		background-color:lightblue;
+		padding:0px;
+		margin:50px auto; 
+		border: solid 2px black;
+	}
+	
+	
+	#firkant {
+		position:absolute;
+		width:200px;
+		height:200px;
+		background-color : blue;
+		left:10px;
+		top:10px;
+	}
+	
+	
+	
+	</style>
+	
+	</head>
+	
+	<body>
+		<div id = "mainDiv">
+			<div id = "firkant"></div>	
+			
+			<button id = "btnMed">med</button>
+			<button id = "btnMot">mot</button>
+			
+		</div>
+	</body>
+	
+	<script>
+		var mainDiv = document.getElementById("mainDiv");
+		var firkant = document.getElementById("firkant");	
+		
+		var btnMed = document.getElementById("btnMed");
+		var btnMot = document.getElementById("btnMot");
+		
+		
+		
+		//Array med objekt som inneholder de ulike stegene i animasjonen.
+		//Vi kan manipulere med Javascript på vanlig måte ved behov
+		var aniFirkantSteg = [
+			{transform:"translate(0px,0px)"},
+			{transform:"translate(480px,0px)"},
+			{transform:"translate(480px,480px)"},
+			{transform:"translate(0px,480px)"},
+			{transform:"translate(0px,0px)"},
+		];
+		
+		//Variabel som definerer timing til animasjon
+		var aniFirkantTiming = {
+			duration:4000, //tid i millisekund for hele animasjonen
+			iterations: Infinity, //Antall repetisjoner. For uendelig antall antall, sett til Infinity
+		}
+	
+		
+		//Definerer et animasjonsobjekt baseret på variablene.
+		var aniFirkant = firkant.animate(aniFirkantSteg,aniFirkantTiming);
+		
+		//Setter currentTime til et stort tall, så den ikke stopper når man snur den
+		aniFirkant.currentTime = 4000000000;
+		
+		
+		btnMot.onclick = function(){
+			aniFirkant.playbackRate = -1;
+		}
+		
+		
+		btnMed.onclick = function(){
+			aniFirkant.playbackRate = 1;
+		}
+		
+	</script>
+	
+	
+</html>

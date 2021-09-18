@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 3</title>
+    <style>
+        #firkant {
+            height: 400px;
+            width: 400px;
+            border: 3px solid black;
+            margin: 1px;
+        }
+        #ball1 {
+            border: 1px solid black;
+            border-radius: 50%;
+            margin: 1px;
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            transform: translate(0px, 0px);
+	    }
+        #ball2 {
+            border: 1px solid black;
+            border-radius: 50%;
+            margin: 1px;
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            transform: translate(200px, 0px);
+	    }
+        #ball3 {
+            border: 1px solid black;
+            border-radius: 50%;
+            margin: 1px;
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            transform: translate(0px, 200px);
+	    }
+        #ball4 {
+            border: 1px solid black;
+            border-radius: 50%;
+            margin: 1px;
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            transform: translate(200px, 200px);
+	    }
+    </style>
+</head>
+<body>
+    <h1>Oppgave 3</h1>
+
+    <div id="firkant">
+        <div id="ball1"></div>
+        <div id="ball2"></div>
+        <div id="ball3"></div>
+        <div id="ball4"></div>
+    </div>
+
+    <script>
+        const firkant = document.getElementById('firkant');
+
+        const ball1 = document.getElementById('ball1');
+        const ball2 = document.getElementById('ball2');
+        const ball3 = document.getElementById('ball3');
+        const ball4 = document.getElementById('ball4');
+
+        const aniBallStegSlutt = [{transform: "translate(100px, 100px)"}];
+
+        const aniBallTimingSirkel = {
+				duration: 3000,
+				iterations: 1,
+				fill:"forwards",
+			};
+
+        ball1.onclick = function() {
+			ball1.animate(aniBallStegSlutt, aniBallTimingSirkel);
+        }
+        ball2.onclick = function() {
+			ball2.animate(aniBallStegSlutt, aniBallTimingSirkel);
+        }
+        ball3.onclick = function() {
+			ball3.animate(aniBallStegSlutt, aniBallTimingSirkel);
+        }
+        ball4.onclick = function() {
+			ball4.animate(aniBallStegSlutt, aniBallTimingSirkel);
+        }
+    </script>
+</body>
+</html>

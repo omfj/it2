@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 2</title>
+</head>
+<body>
+    <h1>Oppgave 2</h1>
+
+    <h3>Antall linjer</h3>
+    <input id="inpLinjer" type="number" min=1 placeholder="1">
+
+    <button id="btnPrint">Print linjer</button>
+
+    <p id="parTekst"></p>
+
+    <script>
+        const inpLinjer = document.getElementById('inpLinjer');
+        const btnPrint = document.getElementById('btnPrint');
+        const parTekst = document.getElementById('parTekst');
+
+        btnPrint.onclick = function() {
+            parTekst.innerHTML = "";
+            const linjer = Number(inpLinjer.value);
+            if(linjer > 40) {
+                for(var i = 0; i < linjer; i++) {
+                    const tiendeLinje = (Number(i+1)/10)
+                    const randomTall = Math.floor(Math.random() * 10) + 1; 
+                    console.log("Linje " + (Number(i)+1) +": " + randomTall);
+                    if(randomTall == 1){
+                        parTekst.innerHTML += "";
+                    } else if (Number.isInteger(tiendeLinje)) {
+                        parTekst.innerHTML += "<b>Dette er linje nummer " + (Number(i)+1) + " av " + linjer + " linjer.<b> <br>";
+                    } else {
+                        parTekst.innerHTML += "Dette er linje nummer " + (Number(i)+1) + " av " + linjer + " linjer. <br>";
+                    }
+                }
+            } else {
+                const tiendeLinje = (Number(i+1)/10)
+                    for(var i = 0; i < linjer; i++) {
+                    const tiendeLinje = (Number(i+1)/10)
+                    if(Number.isInteger(tiendeLinje)) {
+                        parTekst.innerHTML += "<b>Dette er linje nummer " + (Number(i)+1) + " av " + linjer + " linjer.<b> <br>";
+                    } else {
+                        parTekst.innerHTML += "Dette er linje nummer " + (Number(i)+1) + " av " + linjer + " linjer. <br>";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

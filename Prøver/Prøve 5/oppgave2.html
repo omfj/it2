@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 2</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            margin: 10px;
+            padding:10px;
+        }
+        .fjern {
+            cursor: pointer;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Oppgave 2</h1>
+
+    <h3>Regisrere bil</h3>
+    Bilnummer: <input type="text" id="inpBilnummer">
+
+    <br>
+    <br>
+
+    Modell: <input type="text" id="inpModell">
+
+    <br>
+    <br>
+
+    Farge:
+    <select id="inpFarge">
+        <option value="Rød">Rød</option>
+        <option value="Blå">Blå</option>
+        <option value="Gul">Gul</option>
+        <option value="Svart">Svart</option>
+        <option value="Hvit">Hvit</option>
+    </select>
+
+    <br>
+    <br>
+
+    <button id="btnLeggtil" onclick=leggtil()>Legg til</button>
+
+    <br>
+    <br>
+
+    Filtrer farge:
+    <select id="inpFilter">
+        <option value="Alle">Alle farger</option>
+        <option value="Rød">Rød</option>
+        <option value="Blå">Blå</option>
+        <option value="Gul">Gul</option>
+        <option value="Svart">Svart</option>
+        <option value="Hvit">Hvit</option>
+    </select>
+
+    <table id="tblBiler"></table>
+
+    <script>
+        var inpBilnummer = document.getElementById("inpBilnummer");
+        var inpModell = document.getElementById("inpModell");
+        var inpFarge = document.getElementById("inpFarge");
+        var btnLeggtil = document.getElementById("inpLeggtil");
+        var inpFilter = document.getElementById("inpFilter");
+        var tblBiler = document.getElementById("tblBiler");
+
+        biler = [
+            {bilnummer: "VH37829", modell: "Toyota Supra", farge: "Rød", sett: 1},
+            {bilnummer: "UR38727", modell: "BMW X3", farge: "Svart", sett: 3},
+        ];
+
+        tabell();
+
+        function leggtil() {
+            var leggtilBilnummer = inpBilnummer.value;
+            var leggtilModell = inpModell.value;
+            var leggtilFarge = inpFarge.value;
+
+            var sjekk = biler[i].bilnummer;
+
+            for(i = 0; i < biler.length; i++) {
+                if(sjekk.includesOf(leggtilBilnummer)) {
+                    console.log("Den eksisterer allerede");
+                }
+            }
+            
+            biler.push({bilnummer: leggtilBilnummer, modell: leggtilModell, farge: leggtilFarge, sett: 1});
+            console.log(biler);
+
+            nyRad();
+        }
+
+        function tabell() {
+            for(i = 0; i < biler.length; i++) {
+                var tempRad = tblBiler.insertRow();
+                var tempBilnummer = tempRad.insertCell(0);
+                var tempModell = tempRad.insertCell(1);
+                var tempFarge = tempRad.insertCell(2);
+                var tempSett = tempRad.insertCell(3);
+
+                tempBilnummer.innerHTML = biler[i].bilnummer;
+                tempModell.innerHTML = biler[i].modell;
+                tempFarge.innerHTML = biler[i].farge;
+                tempSett.innerHTML = biler[i].sett;
+            }
+        }
+
+        function nyRad() {
+            i = biler.length - 1;
+            var tempRad = tblBiler.insertRow();
+            var tempBilnummer = tempRad.insertCell(0);
+            var tempModell = tempRad.insertCell(1);
+            var tempFarge = tempRad.insertCell(2);
+            var tempSett = tempRad.insertCell(3);
+            tempBilnummer.innerHTML = biler[i].bilnummer;
+            tempModell.innerHTML = biler[i].modell;
+            tempFarge.innerHTML = biler[i].farge;
+        }
+
+        function slett() {
+            tblBiler.deleteRow(i);
+        }
+
+        inpFilter.onchange = function() {
+            
+            var valgtFarge = inpFilter.value;
+            console.log(valgtFarge);
+
+            for(i = 0; i < biler.length; i++) {
+                if(biler[i].farge == valgtFarge) {
+
+                    console.log(biler[i].farge);
+
+                    var tempRad = tblBiler.insertRow();
+                    var tempBilnummer = tempRad.insertCell(0);
+                    var tempModell = tempRad.insertCell(1);
+                    var tempFarge = tempRad.insertCell(2);
+                    var tempSett = tempRad.insertCell(3);
+
+                    tempBilnummer.innerHTML = biler[i].bilnummer;
+                    tempModell.innerHTML = biler[i].modell;
+                    tempFarge.innerHTML = biler[i].farge;
+                    tempSett.innerHTML = biler[i].sett;
+                } else if(biler[i].farge != valgtFarge) {
+                    slett();
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>

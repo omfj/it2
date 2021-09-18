@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eksamen</title>
+    <style>
+        #firkant {
+            background-color: blue;
+            border: 2px solid black;
+        }
+        .divMenu {
+            border: 2px solid black;
+            margin: 20px 0px;
+            padding: 10px;
+        }
+        .oppgaveMenu {
+            position: absolute;
+            margin: 0px 10px;
+
+        }
+        .oppgaveLink {
+            text-transform: capitalize;
+            border-bottom: 2px solid black;
+            margin: 0;
+            padding: 16px 12px;
+            background-color: aliceblue;
+            display: inline;
+        }
+        .menuBox {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="oppagveMenu">
+        <ul class="menuBox">
+            <li><a class="oppgaveLink" href="eksamen1.html">Oppgave 1</a></li>
+            <li><a class="oppgaveLink" href="eksamen2.html">Oppgave 2</a></li>
+            <li><a class="oppgaveLink" href="eksamen3.html">Oppgave 3</a></li>
+        </ul>
+    </div>
+
+    <div class="divMenu">
+        <input id="inpBredde" type="range" min="1" max="9" value="5">
+        <span id="spanGlider"></span>
+        <button id="btnLag">Lag firkant</button>
+    </div>
+    
+    <div id="firkant"></div>
+
+    <div>
+        <p id="pOmkrets">Omkretsen er 20cm</p>
+        <p id="pAreal">Arealet er 25cm^2</p>
+    </div>
+
+    <script>
+        var inpBredde = document.getElementById('inpBredde');
+        var firkant = document.getElementById("firkant");
+        var spanGlider = document.getElementById("spanGlider");
+        var btnLag = document.getElementById("btnLag");
+        var pOmkrets = document.getElementById("pOmkrets");
+        var pAreal = document.getElementById("pAreal");
+
+        var aniFirkantSteg = [
+            {transform: "scale(0)"},
+            {transform: "scale(1)"},
+        ]
+        
+		var aniFirkantTiming = {
+			duration: 2000,
+			iteations: 1,
+			fill: "forwards",
+		}
+
+        bredde = Number(inpBredde.value);
+        lengde = 10 - bredde;
+        spanGlider.innerHTML = bredde;
+        firkant.style.height = lengde + "cm";
+        firkant.style.width = bredde + "cm";
+
+        inpBredde.onchange = function() {
+            bredde = Number(inpBredde.value);
+            spanGlider.innerHTML = bredde;
+        }
+
+        btnLag.onclick = function() {
+            bredde = Number(inpBredde.value);
+            lengde = 10 - bredde;
+            spanGlider.innerHTML = bredde;
+
+            firkant.style.height = lengde + "cm";
+            firkant.style.width = bredde + "cm";
+
+            pOmkrets.innerHTML = "Omkretsen er " + (lengde*2 + bredde*2) + "cm";
+            pAreal.innerHTML = "Arealet er " + (bredde*lengde) + "cm^2";
+
+            firkant.animate(aniFirkantSteg, aniFirkantTiming);
+
+            console.log('Omkretsen er ' + (lengde*2 + bredde*2));
+            
+        }
+    </script>
+</body>
+</html>

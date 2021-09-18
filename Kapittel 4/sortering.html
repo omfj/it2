@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset = "utf-8">
+		<title>sortering</title>
+	</head>
+	
+	<body>
+    <h1>Sortering</h1>
+	<p id = "parUtskrift"></p>
+	
+	<script>
+		var parUtskrift = document.getElementById("parUtskrift");
+
+        var tekstarray = ["Per", "Geir","Anne","Lise"];
+
+		var tallarray = [11,12,1,4,4.2];
+
+		var objektarray = [
+			{type:"ford",modell:2000},
+			{type:"opel",modell:1995},
+			{type:"ford",modell:2010},
+			{type:"saab",modell:2014},
+			{type:"saab",modell:2006},
+			{type:"ford",modell:2006},
+		]
+		
+		
+		
+		
+		parUtskrift.innerHTML = "Sortert tekstarray:<br>";
+		parUtskrift.innerHTML += tekstarray.sort().join("<br> ");
+		//tekstarray.sort() er det sorterte arrayet
+		
+		
+		parUtskrift.innerHTML += "<br><br>Sortert (bokstavelig) tallarray:<br>";
+		parUtskrift.innerHTML += tallarray.sort().join("<br> ");
+		
+		
+		
+		parUtskrift.innerHTML += "<br><br>Sortert tallarray numerisk:<br>";
+		//Sorteringsfunksjonen gir ut posistivt tall om a>b, 0 om de er like, negativt tall om a<b
+		parUtskrift.innerHTML += tallarray.sort(function(a,b){
+			return a-b
+		}).join("<br> ");
+		
+		
+		
+		
+		parUtskrift.innerHTML += "<br><br>Sortert objektarray etter modell:";
+		var sortertBil = objektarray.sort(function(a,b){return a.modell-b.modell});
+		
+		for (var i = 0;i<sortertBil.length;i++){
+			parUtskrift.innerHTML +="<br>" + sortertBil[i].modell;
+		}
+		
+		
+		parUtskrift.innerHTML += "<br><br>Sortert objektarray etter type:";
+		//sammenligner tekstelementer
+		sortertBil = objektarray.sort(function(a,b){
+			if ( a.type > b.type ){
+				return 1;
+			}
+			if ( a.type < b.type ){
+				return -1;
+			}
+				return 0;
+		});
+		
+		for (var i = 0;i<sortertBil.length;i++){
+			parUtskrift.innerHTML +="<br>" + sortertBil[i].type;
+		}
+		
+		parUtskrift.innerHTML += "<br><br>Sortert objektarray etter type, så modell:";
+		sortertBil = objektarray.sort(function(a,b){
+			
+			if ( a.type > b.type ){
+				return 1;
+			}
+			if ( a.type < b.type ){
+				return -1;
+			}
+				return a.modell-b.modell; //Dersom typen er lik, sorteres etter modell
+		});
+		
+		for (var i = 0;i<sortertBil.length;i++){
+			parUtskrift.innerHTML +="<br>" + sortertBil[i].type + " " + sortertBil[i].modell;
+		}
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    </script>
+    </body>
+</html>

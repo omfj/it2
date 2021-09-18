@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<style>
+	body {background-color: lightgrey;}
+	
+	
+	
+	#mainDiv {
+		position:relative;
+		width:1000px;
+		height:562px;
+		background-image: url("snow.jpg");
+		padding:0px;
+		margin:50px auto; 
+		border: solid 2px black;
+		
+	}
+	
+	
+	#inputDiv {
+		top: 50px;
+		left: 50%;
+		transform:translateX(-50%);
+		position: absolute;
+		padding: 10px;
+		margin: 10px;
+	
+	}
+	
+	
+	#inputVerdi {
+		height: 34px;
+		border: 1px solid black;
+		transition: all 0.2s;
+		padding:8px;
+	}
+	
+	
+	#inputVerdi:focus  {
+		border: 3px solid black;
+		border-radius: 23px;
+		outline: none;
+	}
+	
+	
+	#bar {
+		position:absolute;
+		bottom:20px;
+		width:150px;
+		height:100px;
+		left: 150px;
+		transition: all 2s;
+		background-color:red;
+	}
+	
+	
+	</style>
+	
+	</head>
+	
+	<body>
+    <div id = mainDiv>
+		<div id = "inputDiv">
+			<input type = "number" id = "inputVerdi" min="0" value = "100">
+		</div>
+		<div id = "bar"></div>
+	
+	</div>
+	
+	<script>
+		var inputVerdi = document.getElementById("inputVerdi");
+		var bar =  document.getElementById("bar");
+		
+		inputVerdi.onchange = function() {
+			bar.style.height = inputVerdi.value + "px";
+				
+		}
+	
+	
+	</script>
+	
+	</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 2</title>
+    <style>
+        div img {
+            transition: 5s;
+        }
+        .bilder {
+            display: inline-block;
+        }
+        .notFocus {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Oppgave 2</h1>
+
+    <h2>Bildegalleri</h2>
+
+    <div>
+        <div class="bilder">
+            <img class="notFocus" id="img1" src="p1.png" title="Navn: GULIS GRÅSEN Høyde: 162">
+            <p id="span1">GULIS GRÅSEN</p>
+        </div>
+
+        <div class="bilder">
+            <img id="img2" src="p2.png" title="Navn: BLÅIS RØDSEN Høyde: 155">
+            <p id="span2">BLÅIS RØDSEN</p>
+        </div>
+
+        <div class="bilder">
+            <img class="notFocus" id="img3" src="p3.png" title="Navn: BLÅSEN GRÅIS Høyde: 160">
+            <p id="span3">BLÅSEN GRÅIS</p>
+        </div>
+
+        <div>
+            <button id="btnForrige">Forrige</button>
+            <button id="btnNeste">Neste</button> 
+        </div>
+        
+    </div>
+
+    <h2>Finn mistenkt</h2>
+
+    <p>Hårfarge:</p>
+    <select name="harfarge" id="selHaarfarge">
+        <option value=0>Gul</option>
+        <option value=1>Blå</option>
+        <option value=2>Sort</option>
+        <option value=3>Rød</option>
+    </select>
+
+    <p>Hudfarge:</p>
+    <select name="kolli" id="selKolli">
+        <option value=0>Grå</option>
+        <option value=1>Grønn</option>
+        <option value=2>Rød</option>
+        <option value=3>Blå</option>
+    </select>
+
+    <br>
+    <br>
+
+    <label for="briller">Briller: <input type="checkbox" name="briller" id="inpBriller"></label>
+
+    <br>
+    <br>
+
+    <label for="hoyde">Høyde: <input type="number"></label>
+
+    <br>
+    <br>
+
+    <button id="btnSok">Søk etter mistenkt</button>
+
+    <script>
+        const img1 = document.getElementById('img1');
+        const img2 = document.getElementById('img2');
+        const img3 = document.getElementById('img3');
+        const btnNeste = document.getElementById('btnNeste');
+        const btnForrige = document.getElementById('btnForrige');
+
+        const span1 = document.getElementById('span1');
+        const span2 = document.getElementById('span2');
+        const span3 = document.getElementById('span3');
+
+        const navn = ["GULIS GRÅSEN", "BLÅIS RØDSEN", "BLÅSEN GRÅIS", "SORTIS GRÅSEN", "SORTEN BLÅIS", "SORTUS RØDSEN", "SORTAN GRØNNEN", "RØDIS RØDSEN", "EL SORTUS BLACKUS", "BLÅTAN GRÅBRANN", "BLÅRØD RØDBLÅ", "JEGER LEI", "LEI JEGER"];
+        const hoyde = [162, 155, 160, 173, 170, 175, 182, 185, 190, 159, 178, 163, 192];
+ 
+        let bilde1 = 1;
+        let bilde2 = 2;
+        let bilde3 = 3;
+
+        btnNeste.onclick = function() {
+            bilde1 += 1;
+            bilde2 += 1;
+            bilde3 += 1;
+
+            if(bilde1 == 14) {
+                bilde1 = 1;
+            }
+            if(bilde2 == 14) {
+                bilde2 = 1;
+            }
+            if(bilde3 == 14) {
+                bilde3 = 1;
+            }
+
+            img1.src = 'p' + bilde1 + '.png';
+            span1.innerHTML = navn[bilde1-1];
+            img2.src = 'p' + bilde2 + '.png';
+            span2.innerHTML = navn[bilde2-1];
+            img3.src = 'p' + bilde3 + '.png';
+            span3.innerHTML = navn[bilde3-1];
+
+            img1.setAttribute('title', 'Navn: ' + navn[bilde1-1] + ' - Høyde: ' + hoyde[bilde1-1] + ' cm');
+            img2.setAttribute('title', 'Navn: ' + navn[bilde2-1] + ' - Høyde: ' + hoyde[bilde2-1] + ' cm');
+            img3.setAttribute('title', 'Navn: ' + navn[bilde3-1] + ' - Høyde: ' + hoyde[bilde3-1] + ' cm');
+
+        }
+        btnForrige.onclick = function() {
+            bilde1 -= 1;
+            bilde2 -= 1;
+            bilde3 -= 1;
+
+            if(bilde1 == 0) {
+                bilde1 = 13;
+            }
+            if(bilde2 == 0) {
+                bilde2 = 13;
+            }
+            if(bilde3 == 0) {
+                bilde3 = 13;
+            }
+
+            img1.src = 'p' + bilde1 + '.png';
+            span1.innerHTML = navn[bilde1-1];
+            img2.src = 'p' + bilde2 + '.png';
+            span2.innerHTML = navn[bilde2-1];
+            img3.src = 'p' + bilde3 + '.png';
+            span3.innerHTML = navn[bilde3-1];
+
+            img1.setAttribute('title', 'Navn: ' + navn[bilde1-1] + ' - Høyde: ' + hoyde[bilde1-1] + ' cm');
+            img2.setAttribute('title', 'Navn: ' + navn[bilde2-1] + ' - Høyde: ' + hoyde[bilde2-1] + ' cm');
+            img3.setAttribute('title', 'Navn: ' + navn[bilde3-1] + ' - Høyde: ' + hoyde[bilde3-1] + ' cm');
+            
+        }
+        /*
+            P1 - GUL, GRÅ, INGEN, 162, GULIS GRÅSEN
+            P2 - BLÅ, RØD, INGEN, 155, BLÅIS RØDSEN
+            P3 - BLÅ, GRÅ, INGEN, 160, BLÅSEN GRÅIS
+            P4 - SORT, GRÅ, INGEN, 173, SORTIS GRÅSEN
+            P5 - SORT, BLÅ, INGEN, 170, SORTEN BLÅIS
+            P6 - SORT, RØD, INGEN, 175, SORTUS RØDSEN
+            P7 - SORT, GRØNN, INGEN, 182, SORTAN GRØNNEN
+            P8 - RØD, RØD, INGEN, 185, RØDIS RØDSEN
+            P9 - SORT, GRØNN, BRILLER, 190, EL SORTUS BLACKUS
+            P10 - BLÅ, GRÅ, BRILLER, 159, BLÅTAN GRÅBRANN
+            P11 - BLÅ, RØD, BRILLER, 178, BLÅRØD RØDBLÅ
+            P12 - SORT, GRÅ, BRILLER, 163, JEGER LEI
+            P13 - SORT, RØD, BRILLER, 192, LEI JEGER
+        */
+    </script>
+</body>
+</html>

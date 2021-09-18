@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>JavaScript</title>
+</head>
+<body>
+    <div>
+        <h1>Adjektivfortelling</h1>
+
+        <div class="adjektivListe">
+            <p>
+                <input type="text" id = "inpAdj1" placeholder="Adjektiv">
+
+                <br>
+                <input type="text" id = "inpAdj2" placeholder="Adjektiv">
+
+                <br>
+                <input type="text" id = "inpAdj3" placeholder="Adjektiv">
+
+                <br>
+                <input type="text" id = "inpAdj4" placeholder="Adjektiv">
+                <br>
+                <button id = "btnLeggInnAdj">Legg til</button>
+            </p>
+        </div>
+
+        <div class="historie">
+            <p>
+                Det var en gang en <span class="adjektiv" id = "spanAdj1">{Adjektiv}</span> som het Håvard. Han skulle idag på 
+                sin <span class="adjektiv" id = "spanAdj2">{Adjektiv}</span> skole og lære seg masse 
+                <span class="adjektiv" id = "spanAdj3">{Adjektiv}</span>. Men han valgte heller å bli hjemme i hans
+                 <span class="adjektiv" id = "spanAdj4">{Adjektiv}</span> hus. THE END.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        var btnLeggInnAdj = document.getElementById("btnLeggInnAdj");
+
+        var spanAdj1 = document.getElementById("spanAdj1");
+        var spanAdj2 = document.getElementById("spanAdj2");
+        var spanAdj3 = document.getElementById("spanAdj3");
+        var spanAdj4 = document.getElementById("spanAdj4");
+
+        var inpAdj1 = document.getElementById("inpAdj1");
+        var inpAdj2 = document.getElementById("inpAdj2");
+        var inpAdj3 = document.getElementById("inpAdj3");
+        var inpAdj4 = document.getElementById("inpAdj4");
+
+        btnLeggInnAdj.onclick = function() {
+            spanAdj1.innerHTML = inpAdj1.value;
+            spanAdj2.innerHTML = inpAdj2.value;
+            spanAdj3.innerHTML = inpAdj3.value;
+            spanAdj4.innerHTML = inpAdj4.value;
+        }
+    </script>
+
+    <div class = "rammeinnhold">
+        <input type="text" id="inpBildebredde">
+        <button id="btnNyBredde">Endre bildebredde</button>
+    </div>
+
+    <script>
+        var btnNyBredde = document.getElementById("btnNyBredde");
+        var demoBredde = document.getElementById("demoBredde");
+        var divDemo = document.getElementById("divDemo");
+        
+        //Funksjon som kjører når knappen trykkes på.
+        btnNyBredde.onclick = function(){
+            divDemo.width = inpBildebredde.value;
+        }
+        
+</script>
+
+    <div id="divDemo" class="rund" style="width:100;height:100;">
+        <p>Restart</p>
+    </div>
+		
+    <script>
+        var divDemo = document.getElementById("divDemo");
+    
+        divDemo.onclick = function(){
+            divDemo.classList.toggle("rund");
+            location.reload();
+        }
+            
+    </script>
+    
+</body>
+</html>

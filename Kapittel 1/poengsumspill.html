@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poengsum til spill</title>
+</head>
+<style>
+
+	html, body {
+		margin: auto;
+		width: 50%;
+	}
+
+	.liste {
+		margin: .5em 0em;
+		padding: .5em;
+		border: 1px solid black;
+	}
+</style>
+<body>
+
+	<h1>Poengsum til spill</h1>
+
+	<h3>Legg til navn og poeng</h3>
+    <input id="inpNavn" type="text" placeholder="Navn">
+    <input id="inpPoeng" type="number" placeholder="Poengsum">
+    <button id="btnLeggtil">Legg til</button>
+
+    <p id="parError"></p>
+
+    <h3>Poeng: 1 - 10</h3>
+    <p id="parListeA" class="liste"></p>
+
+    <h3>Poeng: 11 - 20</h3>
+    <p id="parListeB" class="liste"></p>
+
+    <h3>Poeng: 21 - 30</h3>
+    <p id="parListeC" class="liste"></p>
+
+    <script src="scripts/script4.js"></script>
+</body>
+</html>

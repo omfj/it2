@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+table, th, td {
+    border: 1px solid black;
+    margin: 10px;
+    padding:10px;
+}
+
+.classURabatt {
+    color:red;
+    text-decoration: line-through;
+    font-weight:bold;
+}
+
+#tdPris,#tdAntall {
+    color:green;
+    font-weight:bold;
+}
+
+.classFjernBillett {
+    color:white;
+    background-color:red;
+    cursor:pointer;
+}
+
+.classLeggTilBillett {
+    background-color:yellow;
+    cursor:pointer;
+}

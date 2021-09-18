@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 1</title>
+    <style>
+        .nb {
+            font-size: 12px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bestille sesongkort</h1>
+
+    <p>Antall voksne</p>
+    <input class="inpBestilling" type="number" id="inpAntallVoksne" min="0" max="10">
+
+    <p>Antall barn</p>
+    <input class="inpBestilling" type="number" id="inpAntallBarn" min="0" max="10">
+
+    <p class="nb">NB! Du kan bare bestille 10 sesongkort totalt</p>
+
+    <p>Velg katogori:</p>
+
+    <form>
+        <input type="radio" id="rbOkonomi" name="katogori" value="True">
+        <label for="okonomi">Økonomi</label><br>
+
+        <input type="radio" id="rbBasis" name="katogori" value="True">
+        <label for="basis">Basis</label><br>
+
+        <input type="radio" id="rbPremium" name="katogori" value="True">
+        <label for="premium">Premium</label>
+      </form>
+
+    <br>
+
+    <p id="parTekst1"></p>
+
+    <button id="btnBestill">Bestill</button>
+    <button id="btnInfo">Vis info</button>
+
+    <p id="parTekst2"></p>
+    <p id="parTekst3"></p>
+
+    <script src="script1.js"></script>
+</body>
+</html>

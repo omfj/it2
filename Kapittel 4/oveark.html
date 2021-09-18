@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Øve animasjon</title>
+    <style>
+        #mainDiv {
+		    position:relative;
+		    width:700px;
+		    height:700px;
+		    background-color:lightblue;
+		    padding:0px;
+            margin: auto;
+		    border: solid 2px black;
+		    overflow:hidden;
+            padding: 20px;
+	    }
+        #fig1 {
+            position: absolute;
+            height: 50px;
+            width: 50px;
+            border: solid 1px black;
+            background-color: midnightblue;
+        }
+        .button {
+            position: relative;
+            width: 200px;
+            margin: 5px auto;
+            text-align: center;
+        }
+        #buttonDiv {
+            position: relative;
+            display: flex;
+            width: 700px;
+            margin: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="mainDiv">
+        <div id="fig1"></div>
+    </div>
+    <div id="buttonDiv">
+        <button id="btnMot" class="button">Mot</button>
+        <button id="btnMed" class="button">Med</button>
+    </div>
+    
+    <script>
+        const mainDiv = document.getElementById('mainDiv');
+        const fig1 = document.getElementById('fig1');
+        const btnMot = document.getElementById('btnMot');
+        const btnMed = document.getElementById('btnMed');
+				
+		var aniFigSteg = [
+            {transform: "translate(0px, 0px"},
+			{transform: "translate(650px, 0px)"},
+            {transform: "translate(650px, 650px)"},
+            {transform: "translate(0px, 650px"},
+            {transform: "translate(0px, 0px)"},
+        ];
+				
+		var aniFigTiming = {
+			duration: 3000,
+			iterations: Infinity,
+		};
+					
+        var aniFig = fig1.animate(aniFigSteg, aniFigTiming);
+
+        aniFig.currentTime = 900000000000;
+        
+        btnMed.onclick = function() {
+            aniFig.direction = "forwards";
+        };
+
+        btnMot.onclick = function() {
+            aniFig.direction = "backwards";
+        };
+
+    </script>
+</body>
+</html>

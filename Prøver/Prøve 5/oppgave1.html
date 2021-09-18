@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 1</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <h1>Oppgave 1</h1>
+    <h3>Person 1</h3>
+
+    Navn: <input type="text" id="inpNavn1">
+
+    <br>
+    <br>
+
+    Alder: <input type="number" id="inpAlder1">
+    <input type="checkbox" id="inpCheck1" value=1>Kryss av om personen hadde bursdag i år.
+
+    <br>
+    <br>
+
+    <h3>Person 2</h3>
+    Navn: <input type="text" id="inpNavn2">
+
+    <br>
+    <br>
+
+    Alder: <input type="number" id="inpAlder2">
+    <input type="checkbox" id="inpCheck2" value=1>Kryss av om personen hadde bursdag i år.
+
+    <br>
+    <br>
+
+    <button id="btnSjekk" onclick=sammenlign()>Sjekk</button>
+
+    <p id="parTekst1"></p>
+    <p id="parTekst2"></p>
+
+    <script>
+        var inpNavn1 = document.getElementById("inpNavn1");
+        var inpNavn2 = document.getElementById("inpNavn2");
+        var inpAlder1 = document.getElementById("inpAlder1");
+        var inpAlder2 = document.getElementById("inpAlder2");
+        var btnSjekk = document.getElementById("btnSjekk");
+        var inpCheck1 = document.getElementById("inpCheck1");
+        var inpCheck2 = document.getElementById("inpCheck2");
+        var parTekst1 = document.getElementById("parTekst1");
+        var parTekst2 = document.getElementById("parTekst2")
+
+        var currentTime = new Date();
+        var dato = currentTime.getFullYear();
+
+        function sammenlign() {
+            var person1 = {navn: inpNavn1.value, alder: Number(inpAlder1.value)};
+            var person2 = {navn: inpNavn2.value, alder: Number(inpAlder2.value)};
+            
+            if(inpCheck1.checked) {
+                var aarstall1 = dato - person1.alder;
+            } else {
+                aarstall1 = dato - person1.alder - 1;
+            }
+
+            if(inpCheck2.checked) {
+                var aarstall2 = dato - person2.alder;
+            } else {
+                aarstall2 = dato - person2.alder - 1;
+            }
+
+            if(aarstall1 < aarstall2) {
+                var eldst = person1.navn + " er eldre enn " + person2.navn;
+
+                gammel = aarstall1;
+                ung = aarstall2;
+
+            } else if(aarstall1 == aarstall2) {
+                eldst = "Det er umulig å si hvem som er eldst av " + person1.navn + " og " + person2.navn;
+            } else {
+                eldst = person2.navn + " er eldre enn " + person1.navn;
+
+                gammel = aarstall2;
+                ung = aarstall1;
+            }
+
+            var tilsammen = person1.alder + person2.alder;
+
+            parTekst1.innerHTML = person1.navn + " og " + person2.navn + " er til sammen " + tilsammen + " år gamle.";
+            parTekst1.innerHTML += "<br>" + eldst;
+
+            if(person1.alder > 18 && person2.alder > 18) {
+                parTekst1.innerHTML += "<br> Både " + person1.navn + " og " + person2.navn + " er over 18 år.";
+            } 
+
+            if(aarstall1 == aarstall2) {
+                parTekst1.innerHTML += "<br>" + person1.navn + " og " + person2.navn + " er født i samme år.";
+            }
+        }
+    </script>
+</body>
+</html>

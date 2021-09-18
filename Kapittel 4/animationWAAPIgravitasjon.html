@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<style>
+	body {background-color: lightgrey;}
+	
+	
+	
+	#mainDiv {
+		position:relative;
+		width:710px;
+		height:598px;
+		background-color:lightblue;
+		padding:0px;
+		margin:50px auto; 
+		border: solid 2px black;
+		
+	}
+	
+	#ball1 {
+		position:absolute;
+		bottom: 390px;
+		left:100px;
+	}
+	
+	#ball2 {
+		position:absolute;
+		bottom: 410px;
+		left:300px;
+	}
+	
+	#ball3 {
+		position:absolute;
+		bottom: 400px;
+		left:500px;
+	}
+	
+	
+	
+	.ball {
+		border-radius:15px;
+		width:30px;
+		height:30px;
+		background-color : red;
+		
+	}
+	
+	
+	
+	</style>
+	
+	</head>
+	
+	<body>
+		<div id = mainDiv>
+			
+			<div id = "ball1" class = "ball"></div>
+			<div id = "ball2" class = "ball"></div>
+			<div id = "ball3" class = "ball"></div>
+		</div>
+		
+	
+	</body>
+	
+	<script>
+		var ball1 = document.getElementById("ball1");
+		var ball2 = document.getElementById("ball2");
+		var ball3 = document.getElementById("ball3");
+		
+		
+		//variabel som inneholder de ulike stegene i animasjonen.
+		//Array med objekt, som vi kan manipulere med Javascrip
+		//Translate er hele tiden i forhold til utgangsposisjon
+		var fallendeBall = [
+			{transform:"translate(0px,0px)",backgroundColor:"red"},
+			{transform:"translate(20px,300px)",backgroundColor:"blue"},
+			{transform:"translate(40px,200px)",backgroundColor:"green"},
+			{transform:"translate(60px,300px) scale(2)",backgroundColor:"blue"},
+		]
+		
+		//variabel som definerer timing til animasjon
+		//Objekt, som vi kan manipulere med javascript
+		var fallendeBallTiming1 = {
+			duration:1300, //tid i millisekund for hele animasjonen
+			iterations:1, //Antall repetisjoner. For uendelig antall antall, sett til Infinity
+			delay:1000,
+			fill:"forwards" //forwards: animasjonen viser slutt-tilstand til slutt
+		}
+	
+		var fallendeBallTiming2 = {
+			duration:1300, //tid i millisekund for hele animasjonen
+			iterations:1, //Antall repetisjoner. For uendelig antall antall, sett til Infinity
+			delay:3000,
+			easing:"ease-in",
+			fill:"forwards"
+		}
+		
+		var fallendeBallTiming3 = {
+			duration:1300, //tid i millisekund for hele animasjonen
+			iterations:1, //Antall repetisjoner. For uendelig antall antall, sett til Infinity
+			delay:5000,
+			
+			fill:"forwards",
+			
+		}
+	
+	
+		ball1.animate(fallendeBall,fallendeBallTiming1);
+		ball2.animate(fallendeBall,fallendeBallTiming2);
+		ball3.animate(fallendeBall,fallendeBallTiming3);
+		
+		
+	</script>
+	
+	
+</html>

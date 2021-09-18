@@ -1,0 +1,114 @@
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>Array demo</title>
+		<style>
+			.bilde_cursor {cursor:pointer}
+			.ferdigtelt {filter: blur(5px); cursor: none}
+		</style>
+	</head>
+	<body>
+		
+		<div id = "divBilder"></div>
+		
+		<p id = "parTekst"></p>
+		<button id = "btnTellswitch">Trykk for å skru av telling</button> 	
+		
+				
+		<script>
+		
+		var divBilder = document.getElementById("divBilder");
+		
+		var parOmPerson = document.getElementById("parTekst");
+		var btnTellswitch = document.getElementById("btnTellswitch");
+		var tell = true;
+		
+		var antallpersoner = [];
+		// Array med personer som objekter
+		var personer = [
+			{navn:"Ole",bilde:"bilder/ole50.jpg"},
+			{navn:"Lise",bilde:"bilder/lise50.jpg"},
+			{navn:"Stine",bilde:"bilder/stine50.jpg"},
+		];
+		
+		for (var i=0;i<personer.length;i++){antallpersoner[i] = 0}
+	
+		btnTellswitch.onclick = tellswitch;
+		
+		
+		
+		
+		
+		// tegner opp tabellen
+		tegnpersoner();
+		
+		
+		
+		//-------------------Kun funksjoner under her----------------------------------
+		
+		function tegnpersoner() {
+			//Når vi skal tegne på nytt må vi slette først (viktig når siden er dynamisk, ikke viktig på dette eksemplet)
+			while (divBilder.firstChild) {
+				divBilder.removeChild(divBilder.firstChild);
+			}
+			
+			for (var i=0;i<personer.length;i++){
+				
+				//*******   Legg til bilder i diven med createElement og appendChild*************
+				var imgTemp = document.createElement("img");
+				imgTemp.src = personer[i].bilde;
+				
+				//!!!! indeks er en attributt som vi oppretter og setter til i
+				// Den bruker vi senere med event.target.indeks for å hente ut verdier fra arrayet personer.
+				imgTemp.indeks = i;  
+				imgTemp.classList.add("bilde_cursor");	
+				imgTemp.title = "trykk for å telle " + personer[i].navn;
+				imgTemp.onclick = tellPerson;
+				divBilder.appendChild(imgTemp);
+			}
+		}
+		
+		function tellPerson(event) {
+			//Teller den personen som blir klikka på
+			//Det kan kun telles opp til og med 5
+			//Etter det blir bildet filtrert
+			
+			valgtPerson = event.target.indeks;
+			
+			//teller bare når tell er true og antall er under 5.
+			if(tell&&antallpersoner[valgtPerson]<5){
+				antallpersoner[valgtPerson]++; //Teller opp i arrayet antallpersoner
+				if(antallpersoner[valgtPerson]==5){
+					//event.target er HTML-elementet som ble trykka på.
+					event.target.classList.add("ferdigtelt");
+				};
+			}
+			skrivantall();
+		}
+		
+		function tellswitch() {
+			//Skrur av og på telling
+			if(tell){
+				tell = false;
+				btnTellswitch.innerHTML = "Trykk for å skru på telling"
+			} else { 
+				tell = true;
+				btnTellswitch.innerHTML = "Trykk for å skru av telling";
+			}
+		}
+		
+		
+		function skrivantall() {
+			var tekst = "Antall: <br>";
+			// Skriver ut resultatet av tellinga.
+			for (var i = 0;i<personer.length;i++){
+				tekst += personer[i].navn + " er telt " + antallpersoner[i] + " ganger <br>";
+			}
+			parTekst.innerHTML = tekst;
+		}
+		
+		</script>
+	</body>
+
+</html>	
+		

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<style>
+	body {background-color: red;}
+	#mainDiv {
+		position:relative;
+		width:800px;
+		height:600px;
+		background-color: white;
+		padding:0px;
+		margin:10px auto; 
+		border: solid 2px black;
+	}
+	
+	
+	
+	#glider1 {
+		position:absolute;
+		bottom:10px;
+		left:150px;
+	}
+	
+	#person1 {
+		position:absolute;
+		bottom: 50px;
+		left: 150px;
+		transition:all 3s;
+	
+	}
+	
+	#person2 {
+		position:absolute;
+		right: 150px;
+		bottom:50px;
+		transition:all 10s;
+	}
+	
+	
+	
+	
+	</style>
+	
+	</head>
+	
+	<body>
+    <div id = mainDiv>
+		<input type = "range" id="glider1" min = "208" max = "408">
+		<img src = "personbilde1.png" id = "person1">
+		<img src = "personbilde2.png" id = "person2">
+		
+	</div>
+	
+	
+	</body>
+	<script>
+	var inpGlider1 = document.getElementById("glider1");
+	var imgPerson1 = document.getElementById("person1");
+	var imgPerson2 = document.getElementById("person2");
+	
+	
+	inpGlider1.oninput = function() {
+		
+		imgPerson1.style.height = inpGlider1.value + "px";
+		imgPerson2.style.height = inpGlider1.value + "px";
+
+	}	
+	
+	
+	
+	
+	</script>
+	
+</html>

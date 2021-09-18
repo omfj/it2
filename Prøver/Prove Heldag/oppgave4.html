@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 4</title>
+</head>
+<body>
+    <h1>Oppgave 4</h1>
+
+    <h3>Navn</h3>
+    <input type="text" id="inpNavn">
+
+    <h3>Klasse</h3>
+    <select id="selKlasse">
+        <option value="1A">1A</option>
+        <option value="1B">1B</option>
+        <option value="1C">1C</option>
+        <option value="2A">2A</option>
+        <option value="2B">2B</option>
+        <option value="2C">2C</option>
+        <option value="3A">3A</option>
+        <option value="3B">3B</option>
+        <option value="3C">3C</option>
+    </select>
+
+    <h3>Kjønn</h3>
+    <select id="selKjonn">
+        <option value="gutt">Gutt</option>
+        <option value="jente">Jente</option>
+    </select>
+
+    <h3>Resultat i meter</h3>
+    <input type="number" id="inpResultat">
+
+    <br>
+    <br>
+
+    <button id="btnRegistrer">Registrer person</button>
+
+    <p id="parPersonInfo"></p>
+
+    <br>
+    <br>
+
+    <button id="btnBeste">Vis de beste</button>
+    <p id="parBeste"></p>
+
+    <script>
+        const inpNavn = document.getElementById('inpNavn');
+        const selKlasse = document.getElementById('selKlasse');
+        const selKjonn = document.getElementById('selKjonn');
+        const inpResultat = document.getElementById('inpResultat');
+        const btnRegistrer = document.getElementById('btnRegistrer');
+        const btnBeste = document.getElementById('btnBeste');
+        const parBeste = document.getElementById('parBeste');
+        const parPersonInfo = document.getElementById('parPersonInfo');
+
+        let deltagere = [
+            {navn: "Martin", klasse: "3A", kjonn: "gutt", resultat: 600},
+            {navn: "Frida", klasse: "2C", kjonn: "jente", resultat: 400},
+            {navn: "Fredrik", klasse: "1B", kjonn: "gutt", resultat: 750},
+        ];
+
+        console.log(deltagere);
+
+        btnRegistrer.onclick = function() {
+            parPersonInfo.innerHTML = "";
+
+            navn = inpNavn.value;
+            klasse = selKlasse.value;
+            kjonn = selKjonn.value;
+            resultat = Number(inpResultat.value);
+
+            deltagere.push({navn, klasse, kjonn, resultat});
+
+            var totalLengde = 0;
+            for(let i = 0; i < deltagere.length; i++) {
+                totalLengde += deltagere[i].resultat;
+            }
+            gjennsomnittLengde = totalLengde/deltagere.length;
+
+            console.log("Gjennomsnitt lengde er - " + gjennsomnittLengde);
+
+            if(deltagere[deltagere.length-1].resultat > gjennsomnittLengde) {
+                parPersonInfo.innerHTML = deltagere[deltagere.length-1].navn + " er en " + deltagere[deltagere.length-1].kjonn + "fra " + deltagere[deltagere.length-1].klasse + ". Han løp " + deltagere[deltagere.length-1].resultat + "m, som er over gjennomsnittet.";
+            } else {
+                parPersonInfo.innerHTML = deltagere[deltagere.length-1].navn + " er en " + deltagere[deltagere.length-1].kjonn + "fra " + deltagere[deltagere.length-1].klasse + ". Han løp " + deltagere[deltagere.length-1].resultat + "m, som er under gjennomsnittet.";
+            }
+        }
+
+        btnBeste.onclick = function() {
+            parBeste.innerHTML = "";
+
+            var sorterResultat = deltagere.sort(function(a,b){
+                return b.resultat-a.resultat
+            });
+		
+            for (var i = 0;i<3;i++){
+                parBeste.innerHTML +=  sorterResultat[i].navn + " - " + sorterResultat[i].resultat + "m <br>";
+            }
+        }
+    </script>
+</body>
+</html>

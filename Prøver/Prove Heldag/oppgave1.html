@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgave 1</title>
+</head>
+<body>
+    <h1>Oppgave 1</h1>
+
+    <h3>Navn:</h3>
+    <input id="inpNavn" type="text">
+
+    <h3>Epler</h3>
+    <input id="inpEple" type="number" min=0>
+
+    <h3>Appelsin</h3>
+    <input id="inpAppelsin" type="number" min=0>
+
+    <br>
+    <br>
+
+    <button id="inpBestill">Bestill</button>
+
+    <p id="parTekst" style="padding: 10px;border: 1px solid black;border-radius: 10px;"></p>
+
+    <script>
+        const inpNavn = document.getElementById('inpNavn');
+        const inpEple = document.getElementById('inpEple');
+        const inpAppelsin = document.getElementById('inpAppelsin');
+        const btnBestill = document.getElementById('btnBestill');
+        const parTekst = document.getElementById('parTekst');
+        const divPic = document.getElementById('divPic');
+
+        inpBestill.onclick = function() {
+            const navn = inpNavn.value;
+            const antallEple = Number(inpEple.value);
+            const antallAppelsin = Number(inpAppelsin.value);
+            const antallFrukt = antallEple + antallAppelsin;
+
+            parTekst.innerHTML = 'Hei ' + navn + ', du har bestilt ' + antallEple + ' epler og ' + antallAppelsin + ' appelsiner, til sammen ' + antallFrukt + ' frukter.';
+
+            parTekst.innerHTML += '<br>';
+
+            if(antallEple > (2*(antallAppelsin))) {
+                parTekst.innerHTML += 'Du har bestilt mer enn dobbelt så mange epler som appelsiner.';
+            } else if(antallAppelsin > (2*(antallEple))) {
+                parTekst.innerHTML += 'Du har bestilt mer enn dobbelt så mange appelsiner som epler.';
+            }
+            
+            if(navn == 'Lise' && antallAppelsin != 13 && antallEple != 13) {
+                parTekst.innerHTML += 'Du har ikke bestilt 13 epler eller 13 appelsiner, men likevel heter du Lise.';
+            } else if(antallEple != 13 && antallAppelsin != 13) {
+                parTekst.innerHTML += 'Du har ikke bestilt 13 epler eller 13 appelsiner.';
+            } else {
+                parTekst.innerHTML += '';
+            }
+
+            function epleBilde() {
+                var x = document.createElement("IMG");
+                x.setAttribute("src", "eple.jpeg");
+                x.setAttribute("width", "100");
+                x.setAttribute("height", "100");
+                document.body.appendChild(x);
+            }
+            function appelsinBilde() {
+                var y = document.createElement("IMG");
+                y.setAttribute("src", "appelsin.jpeg");
+                y.setAttribute("width", "100");
+                y.setAttribute("height", "100");
+                document.body.appendChild(y);
+            }
+            for(a=0;a<antallEple;a++){
+                epleBilde();
+                if(a == 19) {
+                    break;
+                }
+            }
+
+            for(b=0;b<antallAppelsin;b++){
+                appelsinBilde();
+                if(b == 19) {
+                    break;
+                }
+            } 
+            
+        }
+    </script>
+</body>
+</html>

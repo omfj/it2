@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test-side</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            margin: 10px;
+            padding:10px;
+        }
+        .fjern {
+            cursor: pointer;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabel test</h1>
+    <table id="tabel"></table>
+    <script>
+        const tabel = document.getElementById("tabel");
+        let cell = 0;
+
+        let info = [
+            {navn: "Ole Magnus", alder: 18, bosted: "Singsaker"},
+            {navn: "Håvard", alder: 18, bosted: "Strindheim"},
+            {navn: "Magnus", alder: 18, bosted: "Singsaker"},
+            {navn: "Isak", alder: 19, bosted: "Øya"},
+        ];
+
+        for(i = 0; i < info.length; i++) {
+            var tempRad = tabel.insertRow();
+
+            var tempNavn = tempRad.insertCell(0);
+            var tempAlder = tempRad.insertCell(1);
+            var tempBosted = tempRad.insertCell(2);
+            var tempFjern = tempRad.insertCell(3);
+
+            tempNavn.innerHTML = info[i].navn;
+            tempAlder.innerHTML = info[i].alder;
+            tempBosted.innerHTML = info[i].bosted;
+            tempFjern.innerHTML = "Fjern";
+            tempFjern.classList.add("fjern");
+
+            tempFjern.onclick = fjern;
+        }
+        function fjern() {
+            var indeks = event.target.parentNode.rowIndex;
+	
+	        if(info[indeks].alder > 0){
+		        info[indeks].alder--;
+		        tabel.rows[indeks].cells[1].innerHTML = info[indeks].alder;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<style>
+	body {background-color: lightgrey;}
+		
+	#mainDiv {
+		position:relative;
+		width:710px;
+		height:598px;
+		background-color:lightblue;
+		padding:0px;
+		margin:50px auto; 
+		border: solid 2px black;
+	}
+	
+	
+	#firkant {
+		position:absolute;
+		top: 200px;
+		left:300px;
+		width:250px;
+		height:250px;
+		background-image : linear-gradient(to right,red, yellow);
+	}
+	
+	</style>
+	
+	</head>
+	
+	<body>
+		<div id = mainDiv>
+			<input id = "inpFart" type="range" min="-20" max="20" value = "10"><br>
+			<p id = "parRate">Klikk på firkant for å starte:</p>
+			<div id = "firkant">
+		</div>
+	</body>
+	
+	<script>
+		var divFirkant = document.getElementById("firkant");
+		var inpFart = document.getElementById("inpFart");
+		var parRate = document.getElementById("parRate");
+		
+		//Array med objekt som inneholder de ulike stegene i animasjonen.
+		//Vi kan manipulere med Javascript på vanlig måte ved behov
+		var roterendeFirkantSteg = [
+			{transform:"rotate(0deg)"},
+			{transform:"rotate(90deg) scale(1.2)",offset:0.25}, 
+			//offset skalerer tidspunkt til et steg i en animasjon, der hele animasjonen går fra 0-1. Om den droppes deles stegene likt.
+			//Her settes den til 0.25 fordi vi er 1/4 ved 90 grader
+			{transform:"rotate(360deg)"},
+		];
+		
+		//Variabel som definerer timing til animasjon
+		//Objekt, som vi kan manipulere med javascript
+		var roterendeFirkantTiming = {
+			duration:3000, //tid i millisekund for hele animasjonen
+			//Antall repetisjoner. For uendelig antall antall, sett til Infinity. Antall kan også være desimaltall.
+			iterations: Infinity, 
+			delay:2, // forsinkelse i millisekund før animasjonen starter
+			//easing:"steps(8)", //setter timingen til de forskjellige stegene. standard er helt lineær.
+			
+		}
+	
+		
+		//Definerer et animasjonsobjekt baseret på variablene.
+		var roterendeFirkant = divFirkant.animate(roterendeFirkantSteg,roterendeFirkantTiming);
+		roterendeFirkant.pause();//Forhindrer at animasjonen starter med en gang
+		
+		divFirkant.onclick = function(){
+			
+			if(roterendeFirkant.playState=="paused"){
+				roterendeFirkant.play();
+			}
+			else{
+				roterendeFirkant.pause();
+			}
+		}
+		
+		
+		
+	inpFart.onchange = function(e) {
+			//.playbackRate styrer farten til en animasjon. verdien 1 gir normal fart. Negativer verdier gir baklengs animasjon.
+			var rate = e.target.value/10;
+			roterendeFirkant.playbackRate = rate;//endrer farten til animasjonen
+			parRate.innerHTML = "Playbackrate er: " + rate;
+			
+		}
+	</script>
+	
+	
+</html>

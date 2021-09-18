@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<style>
+	body {background-color: lightgrey;}
+		
+	#mainDiv {
+				
+		position:relative;
+		width:700px;
+		height:700px;
+		background-color:lightblue;
+		padding:0px;
+		margin:50px auto; 
+		border: solid 2px black;
+	}
+	
+	
+	#ball {
+		position:absolute;
+		width:200px;
+		height:200px;
+		border: solid 2px black;
+		border-radius:50%;
+		background-color : blue;
+		left:10px;
+		top:240px;
+	}
+	
+	
+	.gjerde {
+		position:absolute;
+		width:20px;
+		height:300px;
+		background-color : black;
+		left:340px;
+	
+	
+	}
+	
+	#oppe {
+		top:0px;
+	}
+	
+	#nede {
+		bottom:0px;
+	}
+	
+	
+	</style>
+	
+	</head>
+	
+	<body>
+		<div id = "mainDiv">
+			<div id = "ball"></div>
+			<div id = "oppe" class = "gjerde"></div>
+			<div id = "nede" class = "gjerde"></div>			
+		</div>
+	</body>
+	
+	<script>
+		var mainDiv = document.getElementById("mainDiv");
+		var ball = document.getElementById("ball");	
+		
+		var startPos = true;
+		
+		
+		
+		//Array med objekt som inneholder de ulike stegene i animasjonen.
+		//Vi kan manipulere med Javascript på vanlig måte ved behov
+		var aniBallSteg = [
+			{transform:"translateX(0px) scale(1)"},
+			{transform:"translateX(230px) scale(0.3)"},
+			{transform:"translateX(460px) scale(1)"},
+			
+		];
+		
+		//To forskjellige timing-funksjoner, en hver retning
+		var aniBallTiming = {
+			duration:4000, //tid i millisekund for hele animasjonen
+			iterations: 1, //Antall repetisjoner. For uendelig antall antall, sett til Infinity
+			fill:"forwards"
+		}
+	
+		var aniBallTimingReverse = {
+			duration:4000, //tid i millisekund for hele animasjonen
+			iterations: 1, //Antall repetisjoner. For uendelig antall antall, sett til Infinity
+			fill:"forwards",
+			direction:"reverse"
+		}
+		
+		
+		
+		
+		
+		
+		
+		ball.onclick = function(){
+			if(startPos){
+				ball.animate(aniBallSteg,aniBallTiming);
+				startPos = false;
+			}else{
+				ball.animate(aniBallSteg,aniBallTimingReverse);
+				startPos = true;
+			}
+		}
+		
+		
+	</script>
+	
+	
+</html>

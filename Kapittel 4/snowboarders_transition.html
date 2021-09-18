@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<style>
+	body {background-color: red;}
+	
+	
+	/* 
+		Lager en mainDiv med position:relative for å plasserer elementer absolutt inne i denne
+	*/
+	#mainDiv {
+		position:relative;
+		width:1000px;
+		height:562px;
+		background-image: url("snow.jpg");
+		padding:0px;
+		margin:50px auto; 
+		border: solid 2px black;
+		
+	}
+	
+	/* 
+		for å posisjonere alle element med klassen .imgabs absolutt (direkte angi plassering) inne i mainDiv
+	*/
+	.imgabs {
+		position:absolute;
+		
+		
+	}
+	
+	/* 
+		Transisjon tilbake til utgangspunktet tar 5s
+	*/
+	.sb {
+		transition:all 5s;
+	}
+	
+	/* 
+		Transisjon med rotasjon,2s. 
+	*/
+	.sb:hover {
+		transform:rotate(720deg);
+		transition:all 2s;
+	}
+	
+	/* ------------------------------------------------------------------------------
+		top og left gir absolutt plassering inne i mainDiv
+		max-width skalerer størrelsen, height:auto gjør at forhold mellom bredde og høyde ikke endrer seg.
+		Prøv å endre verdier så ser du hva som skjer.
+	*/
+	
+	
+	#sb1 {
+		left: 10px;
+		top: 60px;
+		max-width:10%;
+		height:auto;
+	}
+	
+	#sb1:hover {
+		left: 395px;
+		max-width:50%;
+		top:300px;
+				
+	}
+	
+	.sb2 {
+		bottom: 10px;
+		right: 500px;
+		max-width:14%;
+		height:auto;
+	
+	}
+	
+	.sb3 {
+		bottom: 145px;
+		left: 78px;
+		max-width:16%;
+		height:auto;
+	}
+	
+	
+	
+	</style>
+	
+	</head>
+	
+	<body>
+    <div id = mainDiv>
+		<img src = "sb1.png" id = "sb1" class = "sb imgabs">
+		<img src = "sb2.png" class = "sb sb2 imgabs">
+		<img src = "sb3.png" class = "sb sb3 imgabs">
+	
+	
+	</div>
+	
+	
+	
+	</body>
+</html>

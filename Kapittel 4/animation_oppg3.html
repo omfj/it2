@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<style>
+	body {background-color: lightgrey;}
+		
+	#mainDiv {
+				
+		position:relative;
+		width:700px;
+		height:700px;
+		background-color:lightblue;
+		padding:0px;
+		margin:50px auto; 
+		border: solid 2px black;
+		overflow:hidden;
+	}
+	
+	
+	#fk1 {
+		position:absolute;
+		width:40px;
+		height:50px;
+		background-color : blue;
+		bottom:30px;
+		left:540px;
+		
+	}
+	
+	#fk3 {
+		position:absolute;
+		width:40px;
+		height:50px;
+		background-color : yellow;
+		bottom:130px;
+		left:550px;
+		
+	}
+	
+	
+	#fk2 {
+		position:absolute;
+		width:20px;
+		height:50px;
+		background-color : red;
+		bottom:80px;
+		left:560px;
+		
+	}
+	
+	#bakke {
+		position:absolute;
+		width:700px;
+		height:30px;
+		background-color : black;
+		bottom:0px;
+	
+	
+	}
+	
+	#bil{
+		position:absolute;
+		bottom:30px;
+		left:5px;
+	}
+	
+	</style>
+	
+	</head>
+	
+	<body>
+		<div id = "mainDiv">
+			
+			Fart:<input type = "number" id = "inpFart" value = "30" min = "5" max = "100">
+			<img id = "bil" src = "bilpng.png" height="auto" width="200">
+			<div id = "bakke"></div>
+			<div id = "fk1"></div>
+			<div id = "fk2"></div>
+			<div id = "fk3"></div>	
+		</div>
+	</body>
+	
+	<script>
+		var bil = document.getElementById("bil");
+		var fk1 = document.getElementById("fk1");
+		var fk2 = document.getElementById("fk2");
+		var fk3 = document.getElementById("fk3");
+		var inpFart = document.getElementById("inpFart");
+		
+		var startPos = true;
+		
+		bil.onclick = function(){
+			// All kode legges inn i funksjonen som kjører når bilen klikkes på.
+			
+			if(startPos){//Koden kjøres bare en gang i praksis
+				
+				var fart = Number(inpFart.value);//Henter verdi fra input-felt
+				var distanse = 30000;
+				var tid = distanse/fart;//Beregner til til animasjonen av bilen
+				
+				//Bil-animasjon
+				var aniBilSteg = [
+					{transform:"translateX(0px)"},
+					{transform:"translateX(380px)"}
+				];
+				
+				//Bil-timing
+				var aniBilTiming = {
+					duration:tid, //tid i millisekund for hele animasjonen, beregnet tidligere
+					iterations: 1, //Antall repetisjoner. For uendelig antall antall, sett til Infinity
+					easing:"ease-in", //sakte, så fortere
+					fill:"forwards",//Bilen blir stående der den stopper
+				}
+			
+				
+				var aniBil = bil.animate(aniBilSteg,aniBilTiming);
+				aniBil.pause();
+				
+				aniBil.onfinish = function(){
+				//Når bilanimasjonen er ferdig, animeres firkantene
+					var aniFk1Steg = [
+						{transform:"translate(0px,0px)"},
+						{transform:"translate(338px,-72px)"},
+					];
+					var aniFk2Steg = [
+						{transform:"translate(0px,0px)"},
+						{transform:"translate(-40px,-1720px)"},
+						{transform:"translate(-80px,30px)"},
+					];
+					
+					var aniFk2StegFinish = [
+						{transform:"translate(-80px,30px) rotate(0deg)"},
+						{transform:"translate(-60px,48px) rotate(100deg)"},
+					];
+					
+					
+					var aniFk3Steg = [
+						{transform:"translate(0px,0px) rotate(0deg)"},
+						{transform:"translate(-170px,-320px) rotate(3600deg)"},
+						{transform:"translate(-320px,100px)rotate(7200deg)"},
+					];
+					
+					var aniFkTiming1 = {
+						duration:800,
+						fill:"forwards",
+					}
+					
+					var aniFkTiming2 = {
+						duration:5800,
+						fill:"forwards",
+					}
+					
+					var aniFkTimingFinish = {
+						duration:500,
+						fill:"forwards",
+						delay:500,
+					}
+					
+					
+					fk1.animate(aniFk1Steg,aniFkTiming1);
+					fk3.animate(aniFk3Steg,aniFkTiming1);
+					var anifk2 = fk2.animate(aniFk2Steg,aniFkTiming2);
+					//Egen animasjon når en av firkantene har landet
+					
+					anifk2.onfinish = function() {
+					
+						//enkel CSS-endring av bilen
+						bil.style.height = "20px";
+						bil.style.width = "200px";
+						//Siste animasjon som kjøres
+						fk2.animate(aniFk2StegFinish,aniFkTimingFinish);
+										
+					}
+
+					
+				
+				}
+			
+			
+				startPos = false; //animasjonen kjøres bare en gang.
+				aniBil.play();
+			}
+		}
+		
+		
+	</script>
+	
+	
+</html>
